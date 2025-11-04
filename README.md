@@ -6,7 +6,7 @@ Student : MESSAOUD Fares Yacine (ID in list = 20)
 Class = SIAD
 
 All the tests are in the main launcher App.java
-3 Tests Are Included : \n
+3 Tests Are Included : 
     1- Test Of the Clock (Horloge) {just Uncomment the function //testDesHorloges}
     2- Test Of The Accounts (Compte A Rebours) With Fixed Access
     3- The GUI of the Clock
