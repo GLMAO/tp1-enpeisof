@@ -1,7 +1,9 @@
 package org.emp.gl.clients ; 
 
 import org.emp.gl.timer.service.TimerChangeListener;
-import org.emp.gl.timer.service.TimerService ; 
+import org.emp.gl.timer.service.TimerService ;
+
+import java.beans.PropertyChangeEvent;
 
 
 public class Horloge implements TimerChangeListener{
@@ -28,10 +30,10 @@ public class Horloge implements TimerChangeListener{
     
         this.timerService.addTimeChangeListener(this);
     }
-     @Override
-    public void propertyChange(String prop, Object oldValue, Object newValue) {
-        if (prop.equals(SECONDE_PROP)) {
-            afficherHeure();
-        }
-    }
+
+     public void propertyChange(PropertyChangeEvent evt) {
+         if (TimerChangeListener.SECONDE_PROP.equals(evt.getPropertyName())) {
+             afficherHeure();
+         }
+     }
 }

@@ -1,10 +1,12 @@
 package org.emp.gl.core.launcher;
 
-import org.emp.gl.clients.Horloge;
 import org.emp.gl.clients.CompteARebours;
+import org.emp.gl.clients.Horloge;
+import org.emp.gl.time.service.impl.DummyTimeServiceImpl;
 import org.emp.gl.timer.service.TimerService;
 import org.emp.gl.time.service.impl.DummyTimeServiceImpl;
-
+import org.emp.gl.timer.service.TimerService;
+import org.emp.gl.clients.HorlogeGraphique;
 import java.util.Random;
 
 /**
@@ -13,18 +15,30 @@ import java.util.Random;
 public class App {
 
     public static void main(String[] args) {
-        //System.out.println("=== TEST DES HORLOGES ===");
-        //testDesHorloges();
+        System.out.println("=== TEST DES HORLOGES ===");
+        //testDesHorloges(); //uncommentez la fonction pour la lancer
 
         System.out.println("\n=== TEST DES COMPTES À REBOURS ===");
         testDesComptesARebours();
 
+        System.out.println("\n=== TEST DE INTERFACE GRAPHIC DE L'HEURE");
+        testInterfaceGui();
+
+
         System.out.println("\nTous les tests sont terminés !");
+
+
     }
 
-    /**
-     * Test pour afficher l'heure avec plusieurs horloges
-     */
+    private static void testInterfaceGui() {
+        TimerService timerService = new DummyTimeServiceImpl();
+
+        // Lancer la fenêtre graphique
+        javax.swing.SwingUtilities.invokeLater(() -> {
+            new HorlogeGraphique(timerService);
+        });
+    }
+
     private static void testDesHorloges() {
         // 1. Créer une instance du service de temps
         TimerService timerService = new DummyTimeServiceImpl();
