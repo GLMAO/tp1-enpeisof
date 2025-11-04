@@ -1,9 +1,10 @@
 package org.emp.gl.clients ; 
 
+import org.emp.gl.timer.service.TimerChangeListener;
 import org.emp.gl.timer.service.TimerService ; 
 
 
-public class Horloge {
+public class Horloge implements TimerChangeListener{
 
     String name; 
     TimerService timerService ; 
@@ -22,5 +23,15 @@ public class Horloge {
                                 timerService.getMinutes()+":"+
                                 timerService.getSecondes()) ;
     }
-
+    public void setTimerService(TimerService timerService) {
+        this.timerService = timerService;
+    
+        this.timerService.addTimeChangeListener(this);
+    }
+     @Override
+    public void propertyChange(String prop, Object oldValue, Object newValue) {
+        if (prop.equals(SECONDE_PROP)) {
+            afficherHeure();
+        }
+    }
 }
